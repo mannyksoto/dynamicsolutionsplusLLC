@@ -8,7 +8,7 @@ from ui import apply_style, footer
 
 st.set_page_config(
     page_title=BUSINESS["name"],
-    page_icon="🌿",
+    page_icon="assets/favicon.png",
     layout="wide",
 )
 apply_style()

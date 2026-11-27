@@ -7,34 +7,49 @@ Anything in [BRACKETS] is a placeholder waiting on info from the customer.
 BUSINESS = {
     "name": "Dynamic Solutions Plus LLC",
     "short_name": "Dynamic Solutions Plus",
-    "tagline": "Landscaping & Irrigation Done Right",
-    "phone": "(573)216-4436",
-    "email": "dynamicsolutionsplusllc@gmail.com",
+    "tagline": "The Only Call You'll Ever Want To Make!",
+    "phone": "(573) 216-4436",
+    "email": "[info@example.com]",
     "service_area": "Greater St. Louis to the Lake of the Ozarks",
-    "hours": "by appointment Only",
-    "license_note": "Licensed & Insured",
-    "facebook": "https://facebook.com/DynamicSolutionsPlus",   # paste full URL to show a link, leave blank to hide
+    "hours": "Mon–Fri 7am–6pm · Sat by appointment",
+    "license_note": "Fully Licensed & Insured",
+    "facebook": "",   # paste full URL to show a link, leave blank to hide
+    "instagram": "",
 }
 
 SERVICES = [
     {
+        "icon": "💧",
+        "title": "Irrigation Service & Repair",
+        "blurb": "Broken heads, leaks, bad valves or a controller acting up — we'll track it down and fix it.",
+        "details": ["Leak & valve diagnosis", "Head & nozzle replacement",
+                    "New system installs", "Spring start-up & fall winterization"],
+    },
+    {
         "icon": "🌿",
         "title": "Landscape Design & Installation",
         "blurb": "Custom plans for beds, shrubs, trees and hardscape that fit your yard and budget.",
-        "details": ["Site walk & design consult", "Plant selection for local climate",
+        "details": ["Site walk & design consult", "Plant selection for Missouri climate",
                     "Mulch, rock & edging", "Sod installation"],
     },
     {
-        "icon": "🔧",
-        "title": "Irrigation Repair & Service",
-        "blurb": "Broken heads, leaks, bad valves or a controller acting up — we'll track it down.",
-        "details": ["Leak & valve diagnosis", "Head & nozzle replacement",
-                    "Spring start-up", "Fall winterization / blowouts"],
+        "icon": "💡",
+        "title": "Landscape Lighting",
+        "blurb": "Show off your home and yard after dark with low-voltage outdoor lighting.",
+        "details": ["Path & walkway lights", "Up-lighting for trees & walls",
+                    "Timers & smart controls", "Fixture repair & replacement"],
+    },
+    {
+        "icon": "🍂",
+        "title": "General Maintenance",
+        "blurb": "Keep the property sharp all year with scheduled cleanups and care.",
+        "details": ["Spring & fall cleanups", "Trimming & pruning",
+                    "Bed weeding & re-mulching", "Leaf removal"],
     },
 ]
 
 WHY_US = [
-    ("✅", "Licensed & insured"),
+    ("✅", "Fully licensed & insured"),
     ("📋", "Free, written estimates"),
     ("⏱️", "On-time, clean job sites"),
     ("🤝", "Locally owned & operated"),

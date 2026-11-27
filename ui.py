@@ -1,4 +1,6 @@
 """Shared styling + header/footer used by every page."""
+import base64
+from pathlib import Path
 import streamlit as st
 from site_config import BUSINESS
 
@@ -9,11 +11,36 @@ CSS = """
 .block-container {padding-top: 2rem; max-width: 1100px;}
 
 .hero {
-  background: linear-gradient(135deg, #1f4d2b 0%, #2e7d4f 30%, #3d1a5c 100%);
-  color: #fff; border-radius: 16px; padding: 3rem 2rem; margin-bottom: 2rem;
+  background: linear-gradient(135deg, #1f4d2b 0%, #2e7d4f 45%, #3d1a5c 100%);
+  color: #fff; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem;
 }
-.hero h1 {color:#fff; font-size: 2.6rem; margin-bottom: .3rem; text-align: center;}
-.hero p  {font-size: 1.2rem; opacity: .95;}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1.1fr; gap: 2.5rem; align-items: center;
+}
+.hero-logo img {
+  width: 100%; border-radius: 12px; display: block;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+.hero-text {text-align: center;}
+.hero .hero-title {font-size: 2.2rem; font-weight: 700; line-height: 1.15; margin-bottom: .6rem;}
+.hero .tagline {font-size: 1.35rem; font-style: italic; color: #FEBE01; font-weight: 600; margin-bottom: .5rem;}
+.hero .area {font-size: 1rem; opacity: .9; margin-bottom: 1.6rem;}
+.hero .actions {display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap;}
+.hero .btn {
+  display: inline-block; padding: .7rem 1.4rem; border-radius: 999px;
+  font-weight: 700; text-decoration: none !important; font-size: 1.05rem;
+}
+.hero .btn-primary {background: #FEBE01; color: #111 !important;}
+.hero .btn-primary:hover {background: #ffd23f;}
+.hero .badge {
+  border: 1.5px solid rgba(255,255,255,.6); color: #fff;
+  background: rgba(255,255,255,.08);
+}
+@media (max-width: 800px) {
+  .hero {padding: 1.5rem;}
+  .hero-grid {grid-template-columns: 1fr; gap: 1.5rem;}
+  .hero .hero-title {font-size: 2rem;}
+}
 
 .card {
   background: #ffffff; border: 1px solid #e3ebe5; border-radius: 14px;
@@ -60,3 +87,11 @@ def footer():
         </div>""",
         unsafe_allow_html=True,
     )
+
+
+@st.cache_data
+def image_b64(relative_path: str) -> str:
+    """Return an image as a data: URL so it can be used inside custom HTML."""
+    path = Path(__file__).parent / relative_path
+    mime = "image/png" if path.suffix.lower() == ".png" else "image/jpeg"
+    return f"data:{mime};base64," + base64.b64encode(path.read_bytes()).decode()
