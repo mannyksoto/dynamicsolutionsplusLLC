@@ -46,7 +46,11 @@ CSS = """
   background: #ffffff; border: 1px solid #e3ebe5; border-radius: 14px;
   padding: 1.4rem; height: 100%; box-shadow: 0 2px 8px rgba(0,0,0,.04);
 }
-.card h3 {margin-top: .2rem; color: #1f4d2b;}
+.card h3 {
+  margin-top: .2rem; color: #1f4d2b; line-height: 1.25;
+  font-size: clamp(1.15rem, 1.7vw, 1.5rem) !important;
+  word-break: keep-all; overflow-wrap: normal; hyphens: none;
+}
 .icon {font-size: 2rem;}
 
 .cta {
