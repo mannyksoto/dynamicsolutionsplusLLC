@@ -55,7 +55,6 @@ WHY_US = [
 ]
 
 ABOUT_TEXT = """
-
 Hi, I'm Tina, owner of Dynamic Solutions Plus, a woman-owned landscaping and irrigation company
 proudly serving Greater St. Louis to the Lake of the Ozarks. With six years of hands-on experience,
 I've built this business on one simple principle: do the job right, and do it honestly. That means
@@ -63,9 +62,9 @@ showing up when I say I will, giving you a straight answer and a fair price, and
 corners, whether it's a single sprinkler head or a complete landscape install. I take real pride in
 my work, and I treat every yard like it's my own. When the job is done, I want you to love the
 result and to know you'll never have to look for another company again.
+"""
 
-
-
+TRIBUTE_TEXT = """
 Dynamic Solutions Plus was founded in 2021 by Brad Mason and Tina. Brad brought more than 40 years
 of landscaping and irrigation experience to the company, along with a work ethic and a love for the
 trade that shaped everything we do. Sadly, Brad passed away just three months after the company began.
@@ -73,6 +72,4 @@ trade that shaped everything we do. Sadly, Brad passed away just three months af
 Tina chose to carry his vision forward, and the business you see today stands on the foundation he
 laid. Every job we complete is a reflection of the standards Brad believed in: honest work, quality
 craftsmanship, and treating every customer like a neighbor. We are proud to continue his legacy.
-
-
 """
