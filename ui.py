@@ -24,7 +24,7 @@ CSS = """
 .hero-text {text-align: center;}
 .hero .hero-title {font-size: 2.2rem; font-weight: 700; line-height: 1.15; margin-bottom: .6rem;}
 .hero .tagline {font-size: 1.35rem; font-style: italic; color: #FEBE01; font-weight: 600; margin-bottom: .5rem;}
-.hero .area {font-size: 1rem; opacity: .9; margin-bottom: 1.6rem;}
+.hero .area {font-size: 1.3rem; opacity: .95; margin-bottom: 1.8rem;}
 .hero .actions {display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap;}
 .hero .btn {
   display: inline-block; padding: .7rem 1.4rem; border-radius: 999px;
