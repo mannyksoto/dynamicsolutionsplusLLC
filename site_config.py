@@ -11,7 +11,7 @@ BUSINESS = {
     "phone": "(573) 216-4436",
     "email": "dynamicsolutionsplusllc@gmail.com",
     "service_area": "Greater St. Louis to the Lake of the Ozarks",
-    "hours": "by appointment only",
+    "hours": "By appointment only",
     "license_note": "Fully Licensed & Insured",
     "facebook": "https://facebook.com/DynamicSolutionPlus",   # paste full URL to show a link, leave blank to hide
 }
