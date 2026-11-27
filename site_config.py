@@ -9,7 +9,7 @@ BUSINESS = {
     "short_name": "Dynamic Solutions Plus",
     "tagline": "The Only Call You'll Ever Want To Make!",
     "phone": "(573) 216-4436",
-    "email": "[info@example.com]",
+    "email": "dynamicsolutionsplusllc@gmail.com",
     "service_area": "Greater St. Louis to the Lake of the Ozarks",
     "hours": "Mon–Fri 7am–6pm · by appointment only",
     "license_note": "Fully Licensed & Insured",
