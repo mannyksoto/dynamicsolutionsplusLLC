@@ -9,7 +9,7 @@ CSS = """
 .block-container {padding-top: 2rem; max-width: 1100px;}
 
 .hero {
-  background: linear-gradient(135deg, #1f4d2b 0%, #2e7d4f 60%, #3a8fb7 100%);
+  background: linear-gradient(135deg, #1f4d2b 0%, #2e7d4f 45%, #3d1a5c 100%);
   color: #fff; border-radius: 16px; padding: 3rem 2rem; margin-bottom: 2rem;
 }
 .hero h1 {color:#fff; font-size: 2.6rem; margin-bottom: .3rem;}
