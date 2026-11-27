@@ -75,10 +75,8 @@ def call_to_action():
 
 def footer():
     links = []
-    if BUSINESS["facebook"]:
+    if BUSINESS.get("facebook"):
         links.append(f'<a href="{BUSINESS["facebook"]}" target="_blank">Facebook</a>')
-    if BUSINESS["instagram"]:
-        links.append(f'<a href="{BUSINESS["instagram"]}" target="_blank">Instagram</a>')
     social = " · ".join(links)
     st.markdown(
         f"""<div class="site-footer">
