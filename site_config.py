@@ -65,4 +65,14 @@ my work, and I treat every yard like it's my own. When the job is done, I want y
 result and to know you'll never have to look for another company again.
 
 
+
+Dynamic Solutions Plus was founded in 2021 by Brad Mason and Tina. Brad brought more than 40 years
+of landscaping and irrigation experience to the company, along with a work ethic and a love for the
+trade that shaped everything we do. Sadly, Brad passed away just three months after the company began.
+
+Tina chose to carry his vision forward, and the business you see today stands on the foundation he
+laid. Every job we complete is a reflection of the standards Brad believed in: honest work, quality
+craftsmanship, and treating every customer like a neighbor. We are proud to continue his legacy.
+
+
 """
