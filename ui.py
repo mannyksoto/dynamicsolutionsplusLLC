@@ -11,7 +11,7 @@ CSS = """
 .block-container {padding-top: 2rem; max-width: 1300px;}
 
 .hero {
-  background: linear-gradient(135deg, #1f4d2b 0%, #2e7d4f 45%, #3d1a5c 100%);
+  background: linear-gradient(135deg, #1f4d2b 0%, #2e7d4f 30%, #3d1a5c 100%);
   color: #fff; border-radius: 16px; padding: 1.75rem; margin-bottom: 2rem;
 }
 .hero-grid {
@@ -36,7 +36,7 @@ CSS = """
   border: 1.5px solid rgba(255,255,255,.6); color: #fff;
   background: rgba(255,255,255,.08);
 }
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .hero {padding: 1.5rem;}
   .hero-grid {grid-template-columns: 1fr; gap: 1.5rem;}
   .hero .hero-title {font-size: 2rem;}
