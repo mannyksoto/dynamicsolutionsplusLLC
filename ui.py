@@ -8,14 +8,14 @@ CSS = """
 <style>
 /* hide Streamlit chrome so it looks like a normal website */
 #MainMenu, footer, header [data-testid="stToolbar"] {visibility: hidden;}
-.block-container {padding-top: 2rem; max-width: 1100px;}
+.block-container {padding-top: 2rem; max-width: 1300px;}
 
 .hero {
   background: linear-gradient(135deg, #1f4d2b 0%, #2e7d4f 45%, #3d1a5c 100%);
-  color: #fff; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem;
+  color: #fff; border-radius: 16px; padding: 1.75rem; margin-bottom: 2rem;
 }
 .hero-grid {
-  display: grid; grid-template-columns: 1fr 1.1fr; gap: 2.5rem; align-items: center;
+  display: grid; grid-template-columns: 1.45fr 1fr; gap: 2rem; align-items: center;
 }
 .hero-logo img {
   width: 100%; border-radius: 12px; display: block;
