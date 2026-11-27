@@ -56,12 +56,13 @@ WHY_US = [
 
 ABOUT_TEXT = """
 
-Dynamic Solutions Plus is a woman-owned landscaping and irrigation company proudly serving
-Greater St. Louis to the Lake of the Ozarks. With six years of hands-on experience, I've built
-this business on one simple principle: do the job right, and do it honestly. That means showing
-up when I say I will, giving you a straight answer and a fair price, and never cutting corners,
-whether it's a single sprinkler head or a complete landscape install. I take real pride in my
-work, and I treat every yard like it's my own. When the job is done, I want you to love the
+Hi, I'm Tina, owner of Dynamic Solutions Plus, a woman-owned landscaping and irrigation company
+proudly serving Greater St. Louis to the Lake of the Ozarks. With six years of hands-on experience,
+I've built this business on one simple principle: do the job right, and do it honestly. That means
+showing up when I say I will, giving you a straight answer and a fair price, and never cutting
+corners, whether it's a single sprinkler head or a complete landscape install. I take real pride in
+my work, and I treat every yard like it's my own. When the job is done, I want you to love the
 result and to know you'll never have to look for another company again.
+
 
 """
