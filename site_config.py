@@ -26,25 +26,11 @@ SERVICES = [
                     "Mulch, rock & edging", "Sod installation"],
     },
     {
-        "icon": "💧",
-        "title": "Irrigation Installation",
-        "blurb": "New sprinkler and drip systems designed for even coverage and lower water bills.",
-        "details": ["Zone layout & head placement", "Drip lines for beds",
-                    "Smart / Wi-Fi controllers", "Backflow device install"],
-    },
-    {
         "icon": "🔧",
         "title": "Irrigation Repair & Service",
         "blurb": "Broken heads, leaks, bad valves or a controller acting up — we'll track it down.",
         "details": ["Leak & valve diagnosis", "Head & nozzle replacement",
                     "Spring start-up", "Fall winterization / blowouts"],
-    },
-    {
-        "icon": "🍂",
-        "title": "Seasonal Maintenance",
-        "blurb": "Keep the property sharp all year with scheduled cleanups and care.",
-        "details": ["Spring & fall cleanups", "Trimming & pruning",
-                    "Bed weeding & re-mulching", "Leaf removal"],
     },
 ]
 
