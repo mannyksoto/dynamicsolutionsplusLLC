@@ -7,7 +7,7 @@ from site_config import BUSINESS
 CSS = """
 <style>
 /* hide Streamlit chrome so it looks like a normal website */
-#MainMenu, footer, header [data-testid="stToolbar"] {visibility: hidden;}
+#MainMenu, footer, [data-testid="stToolbarActions"], [data-testid="stMainMenu"], [data-testid="stAppDeployButton"] {display: none !important;}
 .block-container {padding-top: 2rem; max-width: 1300px;}
 
 .hero {
