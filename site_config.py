@@ -9,12 +9,11 @@ BUSINESS = {
     "short_name": "Dynamic Solutions Plus",
     "tagline": "Landscaping & Irrigation Done Right",
     "phone": "(573)216-4436",
-    "email": "[info@example.com]",
-    "service_area": "[City, State and surrounding areas]",
-    "hours": "Mon–Fri 7am–6pm · Sat by appointment",
+    "email": "dynamicsolutionsplusllc@gmail.com",
+    "service_area": "Greater St. Louis to the Lake of the Ozarks",
+    "hours": "by appointment Only",
     "license_note": "Licensed & Insured",
-    "facebook": "",   # paste full URL to show a link, leave blank to hide
-    "instagram": "",
+    "facebook": "https://facebook.com/DynamicSolutionsPlus",   # paste full URL to show a link, leave blank to hide
 }
 
 SERVICES = [
