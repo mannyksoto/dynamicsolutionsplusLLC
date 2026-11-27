@@ -8,8 +8,6 @@ st.markdown(
     f"""<div class="hero"><div class="hero-grid">
     <div class="hero-logo"><img src="{image_b64('assets/logo.jpg')}" alt="{BUSINESS['name']} logo"></div>
     <div class="hero-text">
-      <div class="hero-title">{BUSINESS['name']}</div>
-      <div class="tagline">{BUSINESS['tagline']}</div>
       <div class="area">📍 Serving {BUSINESS['service_area']}</div>
       <div class="actions">
         <a class="btn btn-primary" href="tel:{phone_digits}">Call {BUSINESS['phone']}</a>
