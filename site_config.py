@@ -8,7 +8,7 @@ BUSINESS = {
     "name": "Dynamic Solutions Plus LLC",
     "short_name": "Dynamic Solutions Plus",
     "tagline": "Landscaping & Irrigation Done Right",
-    "phone": "[(555) 555-5555]",
+    "phone": "(573)216-4436",
     "email": "[info@example.com]",
     "service_area": "[City, State and surrounding areas]",
     "hours": "Mon–Fri 7am–6pm · Sat by appointment",
