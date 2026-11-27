@@ -13,8 +13,7 @@ BUSINESS = {
     "service_area": "Greater St. Louis to the Lake of the Ozarks",
     "hours": "Mon–Fri 7am–6pm · Sat by appointment",
     "license_note": "Fully Licensed & Insured",
-    "facebook": "",   # paste full URL to show a link, leave blank to hide
-    "instagram": "",
+    "facebook": "https://facebook.com/DynamicSolutionPlus",   # paste full URL to show a link, leave blank to hide
 }
 
 SERVICES = [
@@ -59,6 +58,6 @@ ABOUT_TEXT = """
 [Placeholder — get the owner's story from the customer.]
 
 Dynamic Solutions Plus LLC is a locally owned landscaping and irrigation company
-serving homeowners and businesses in [service area]. We handle everything from
+serving homeowners and businesses in Missouri. We handle everything from
 new landscape installs to sprinkler repairs, and we treat every yard like our own.
 """
