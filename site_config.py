@@ -22,7 +22,7 @@ SERVICES = [
         "title": "Irrigation Service & Repair",
         "blurb": "Broken heads, leaks, bad valves or a controller acting up — we'll track it down and fix it.",
         "details": ["Leak & valve diagnosis", "Head & nozzle replacement",
-                    "New system installs", "Spring start-up & fall winterization"],
+                    "Spring start-up & fall winterization"],
     },
     {
         "icon": "🌿",
@@ -35,15 +35,15 @@ SERVICES = [
         "icon": "💡",
         "title": "Landscape Lighting",
         "blurb": "Show off your home and yard after dark with low-voltage outdoor lighting.",
-        "details": ["Path & walkway lights", "Up-lighting for trees & walls",
+        "details": ["Path & walkway lights",
                     "Timers & smart controls", "Fixture repair & replacement"],
     },
     {
         "icon": "🍂",
         "title": "General Maintenance",
         "blurb": "Keep the property sharp all year with scheduled cleanups and care.",
-        "details": ["Spring & fall cleanups", "Trimming & pruning",
-                    "Bed weeding & re-mulching", "Leaf removal"],
+        "details": ["Trimming & pruning",
+                    "Bed weeding & re-mulching"],
     },
 ]
 
