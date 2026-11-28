@@ -61,6 +61,7 @@ if submitted:
             print(f"Estimate email failed: {e!r}")
             sent = False
             st.error(f"Something went wrong sending your request. Please call {BUSINESS['phone']}.")
+            st.code(repr(e))  # TEMP: remove after testing
         else:
             st.success("Thanks! We got your request and will be in touch within 1 business day.")
             if not sent:
