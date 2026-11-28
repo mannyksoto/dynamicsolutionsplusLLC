@@ -41,4 +41,27 @@ with st.form("estimate", clear_on_submit=True):
     address = c2.text_input("Property address / city")
     services = st.multiselect("What do you need?", [s["title"] for s in SERVICES] + ["Other"])
     details = st.text_area("Tell us about the project")
-    contact_pref = st.radio("Best way to reach you", ["Phone", "Text", "Email"],
+    contact_pref = st.radio("Best way to reach you", ["Phone", "Text", "Email"], horizontal=True)
+    submitted = st.form_submit_button("Send Request", type="primary")
+
+
+
+if submitted:
+    if not (name and phone and email):
+        st.error("Please fill in your name, phone and email.")
+    else:
+        data = {
+            "name": name, "phone": phone, "email": email, "address": address,
+            "services": ", ".join(services) or "Not specified",
+            "contact preference": contact_pref, "details": details,
+        }
+        try:
+            sent = send_email(data)
+        except Exception as e:
+            print(f"Estimate email failed: {e!r}")
+            sent = False
+            st.error(f"Something went wrong sending your request. Please call {BUSINESS['phone']}.")
+        else:
+            st.success("Thanks! We got your request and will be in touch within 1 business day.")
+            if not sent:
+                st.caption("⚠️ Dev note: email secrets not configured — request was not delivered.")
