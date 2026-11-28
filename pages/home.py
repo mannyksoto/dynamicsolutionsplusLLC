@@ -21,16 +21,14 @@ st.markdown(
 st.page_link("pages/contact.py", label="Get a Free Estimate", icon="📞")
 
 st.subheader("What we do")
-per_row = 4 if len(SERVICES) <= 4 else 3
-for i in range(0, len(SERVICES), per_row):
-    cols = st.columns(per_row)
-    for col, svc in zip(cols, SERVICES[i:i + per_row]):
-        col.markdown(
-            f"""<div class="card"><div class="icon">{svc['icon']}</div>
-            <h3>{svc['title']}</h3><p>{svc['blurb']}</p></div>""",
-            unsafe_allow_html=True,
-        )
-    st.write("")
+cards = "".join(
+    f"""<a class="card-link" href="services" target="_self"><div class="card">
+    <div class="icon">{svc['icon']}</div><h3>{svc['title']}</h3><p>{svc['blurb']}</p>
+    <span class="more">Learn more →</span></div></a>"""
+    for svc in SERVICES
+)
+st.markdown(f'<div class="card-grid">{cards}</div>', unsafe_allow_html=True)
+st.write("")
 
 st.subheader("Why homeowners choose us")
 cols = st.columns(len(WHY_US))
