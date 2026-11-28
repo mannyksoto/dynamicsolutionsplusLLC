@@ -72,9 +72,10 @@ def apply_style():
 def call_to_action():
     st.markdown(
         f"""<div class="cta"><b>Ready for a better yard?</b>
-        Call <b>{BUSINESS['phone']}</b> or request a free estimate on the Contact page.</div>""",
+        Call <b>{BUSINESS['phone']}</b> or request a free estimate online.</div>""",
         unsafe_allow_html=True,
     )
+    st.page_link("pages/contact.py", label="Request a Free Estimate", icon="📞")
 
 
 def footer():
