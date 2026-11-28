@@ -12,7 +12,7 @@ photos = sorted(
 ) if gallery_dir.exists() else []
 
 if not photos:
-    st.info("Project photos coming soon! (Add images to `assets/gallery/` to fill this page.)")
+    st.info("Project photos coming soon!")
 else:
     cols = st.columns(3)
     for i, photo in enumerate(photos):
