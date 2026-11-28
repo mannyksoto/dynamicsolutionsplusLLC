@@ -9,6 +9,7 @@ import re
 import smtplib
 from email.message import EmailMessage
 import streamlit as st
+import streamlit.components.v1 as components
 from PIL import Image, ImageOps
 from site_config import BUSINESS, SERVICES
 
@@ -155,8 +156,36 @@ st.write(f"Prefer to talk? Call **{BUSINESS['phone']}** · {BUSINESS['hours']}")
 # n changes after a successful send so the visitor gets a fresh, empty form.
 st.session_state.setdefault("form_n", 0)
 n = st.session_state.form_n
-if st.session_state.pop("just_sent", None) is not None:
-    st.success("Thanks! We got your request and will be in touch within 1 business day.")
+# ---- after a successful send: show a confirmation instead of the form ----
+if st.session_state.get("just_sent"):
+    # jump back to the top so the visitor sees the confirmation right away
+    components.html(
+        "<script>window.parent.document.querySelector('[data-testid=\"stMain\"]')"
+        "?.scrollTo({top: 0, behavior: 'smooth'}); window.parent.scrollTo(0, 0);</script>",
+        height=0,
+    )
+    st.toast("Request sent!", icon="✅")
+    st.markdown(
+        f"""<div class="sent-card">
+        <div class="sent-icon">✅</div>
+        <h2>Request sent!</h2>
+        <p>Thanks! We got your request and will be in touch within 1 business day.</p>
+        <p class="sent-sub">Need us sooner? Call <b>{BUSINESS['phone']}</b>.</p>
+        </div>
+        <style>
+        .sent-card {{text-align:center; background:#f1f7f3; border:2px solid #2e7d4f;
+                    border-radius:16px; padding:2.5rem 1.5rem; margin:1rem 0 1.5rem;}}
+        .sent-card h2 {{color:#1f4d2b; margin:.3rem 0 .6rem;}}
+        .sent-card p {{font-size:1.1rem; margin:.3rem 0;}}
+        .sent-icon {{font-size:3rem;}}
+        .sent-sub {{color:#4d5c52; font-size:1rem !important;}}
+        </style>""",
+        unsafe_allow_html=True,
+    )
+    if st.button("Send another request"):
+        st.session_state.just_sent = False
+        st.rerun()
+    st.stop()
 
 # Red outline on every field that has a problem
 errors = st.session_state.get("form_errors", {})
