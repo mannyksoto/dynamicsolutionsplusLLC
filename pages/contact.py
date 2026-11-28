@@ -4,10 +4,12 @@ Emails each request to the business via SMTP using the [email] settings
 in Streamlit Secrets. To change who receives requests, edit `recipient`
 in Secrets — no code change needed.
 """
+import io
 import re
 import smtplib
 from email.message import EmailMessage
 import streamlit as st
+from PIL import Image, ImageOps
 from site_config import BUSINESS, SERVICES
 
 US_STATES = [
@@ -16,6 +18,10 @@ US_STATES = [
     "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD",
     "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
 ]
+
+MAX_PHOTOS = 5
+MAX_PHOTO_MB = 15          # per photo, before we shrink it
+CONTACT_OPTIONS = ["Phone", "Text", "Email", "No preference"]
 
 # ---------- validation rules ----------
 NAME_RE = re.compile(r"^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ .'\-]*[A-Za-zÀ-ÿ.]$")
@@ -74,28 +80,67 @@ def validate(f: dict) -> dict:
 
     if not f["services"]:
         errors["services"] = "Please choose at least one service."
+
+    photos = f.get("photos") or []
+    if len(photos) > MAX_PHOTOS:
+        errors["photos"] = f"Please attach no more than {MAX_PHOTOS} photos."
+    elif any(p.size > MAX_PHOTO_MB * 1024 * 1024 for p in photos):
+        errors["photos"] = f"Each photo must be under {MAX_PHOTO_MB} MB."
     return errors
 
 
+def contact_preference(selected: list) -> str:
+    """Turn the picked options into one line for the email."""
+    picks = [p for p in (selected or []) if p != "No preference"]
+    return ", ".join(picks) if picks else "No preference"
+
+
+def shrink_photo(uploaded):
+    """Resize a phone photo so the email stays small. Returns (filename, bytes, subtype)."""
+    raw = uploaded.getvalue()
+    try:
+        img = ImageOps.exif_transpose(Image.open(io.BytesIO(raw))).convert("RGB")
+        img.thumbnail((1600, 1600))
+        out = io.BytesIO()
+        img.save(out, "JPEG", quality=82, optimize=True)
+        name = uploaded.name.rsplit(".", 1)[0] + ".jpg"
+        return name, out.getvalue(), "jpeg"
+    except Exception:  # a format we can't open (e.g. some iPhone HEIC) - send as-is
+        subtype = uploaded.type.split("/")[-1] if uploaded.type else "octet-stream"
+        return uploaded.name, raw, subtype
+
+
 # ---------- email ----------
-def send_email(data: dict) -> bool:
+def build_message(data: dict, photos: list, cfg) -> EmailMessage:
+    msg = EmailMessage()
+    msg["Subject"] = f"New estimate request – {data['Name']}"
+    msg["From"] = cfg["sender"]
+    msg["To"] = cfg["recipient"]
+    msg["Reply-To"] = data["Email"]
+    body = "\n".join(f"{k}: {v}" for k, v in data.items())
+    if photos:
+        body += f"\n\n{len(photos)} photo(s) attached."
+    msg.set_content(body)
+    for p in photos:
+        name, content, subtype = shrink_photo(p)
+        maintype = "image" if subtype in ("jpeg", "png", "heic", "heif", "webp") else "application"
+        msg.add_attachment(content, maintype=maintype, subtype=subtype, filename=name)
+    return msg
+
+
+def send_email(data: dict, photos: list) -> bool:
     try:
         if "email" not in st.secrets:
             return False
     except Exception:  # no secrets set at all
         return False
     cfg = st.secrets["email"]
-    msg = EmailMessage()
-    msg["Subject"] = f"New estimate request – {data['Name']}"
-    msg["From"] = cfg["sender"]
-    msg["To"] = cfg["recipient"]
-    msg["Reply-To"] = data["Email"]
-    msg.set_content("\n".join(f"{k}: {v}" for k, v in data.items()))
+    msg = build_message(data, photos, cfg)
     port = int(cfg.get("smtp_port", 465))
     if port == 465:
-        server = smtplib.SMTP_SSL(cfg["smtp_server"], port, timeout=20)
+        server = smtplib.SMTP_SSL(cfg["smtp_server"], port, timeout=30)
     else:
-        server = smtplib.SMTP(cfg["smtp_server"], port, timeout=20)
+        server = smtplib.SMTP(cfg["smtp_server"], port, timeout=30)
         server.starttls()
     with server as s:
         s.login(cfg["sender"], cfg["password"])
@@ -132,6 +177,7 @@ def check_form():
     fields = {f: ss.get(f"{f}_{n}") or "" for f in
               ["name", "phone", "email", "street", "city", "state", "zip"]}
     fields["services"] = ss.get(f"services_{n}") or []
+    fields["photos"] = ss.get(f"photos_{n}") or []
     ss.form_errors = validate(fields)
     ss.do_send = not ss.form_errors
 
@@ -171,8 +217,16 @@ with st.form(f"estimate_{n}"):
     )
     field_error(st, "services")
     details = st.text_area("Tell us about the project", key=f"details_{n}")
-    contact_pref = st.radio("Best way to reach you", ["Phone", "Text", "Email"],
-                            horizontal=True, key=f"pref_{n}")
+    photos = st.file_uploader(
+        f"Photos of the area (optional, up to {MAX_PHOTOS})",
+        type=["jpg", "jpeg", "png", "heic", "heif", "webp"],
+        accept_multiple_files=True,
+        key=f"photos_{n}",
+        help="Snap a few pictures of the yard, beds or sprinkler problem - it helps us quote faster.",
+    )
+    field_error(st, "photos")
+    contact_pref = st.pills("Best way to reach you (pick any)", CONTACT_OPTIONS,
+                            selection_mode="multi", key=f"pref_{n}")
     st.form_submit_button("Send Request", type="primary", on_click=check_form)
 
 if errors:
@@ -188,11 +242,11 @@ if st.session_state.pop("do_send", False):
         "Email": email.strip(),
         "Address": address,
         "Services": ", ".join(services),
-        "Best way to reach": contact_pref,
+        "Best way to reach": contact_preference(contact_pref),
         "Details": details.strip() or "(none)",
     }
     try:
-        sent = send_email(data)
+        sent = send_email(data, photos or [])
     except Exception as e:
         print(f"Estimate email failed: {e!r}")
         st.error(f"Something went wrong sending your request. Please call {BUSINESS['phone']}.")
