@@ -1,8 +1,8 @@
 """
 Free-estimate request form.
-Emails each request to the business via SMTP if [email] secrets are set
-(see .streamlit/secrets.toml.example). Without secrets it still validates and
-shows the customer a thank-you, but nothing is sent — set secrets before launch!
+Emails each request to the business via SMTP using the [email] settings
+in Streamlit Secrets. To change who receives requests, edit `recipient`
+in Secrets — no code change needed.
 """
 import smtplib
 from email.message import EmailMessage
@@ -17,7 +17,7 @@ def send_email(data: dict) -> bool:
     try:
         if "email" not in st.secrets:
             return False
-    except Exception:  # no secrets.toml at all
+    except Exception:  # no secrets set at all
         return False
     cfg = st.secrets["email"]
     msg = EmailMessage()
@@ -41,24 +41,4 @@ with st.form("estimate", clear_on_submit=True):
     address = c2.text_input("Property address / city")
     services = st.multiselect("What do you need?", [s["title"] for s in SERVICES] + ["Other"])
     details = st.text_area("Tell us about the project")
-    contact_pref = st.radio("Best way to reach you", ["Phone", "Text", "Email"], horizontal=True)
-    submitted = st.form_submit_button("Send Request", type="primary")
-
-if submitted:
-    if not (name and phone and email):
-        st.error("Please fill in your name, phone and email.")
-    else:
-        data = {
-            "name": name, "phone": phone, "email": email, "address": address,
-            "services": ", ".join(services) or "Not specified",
-            "contact preference": contact_pref, "details": details,
-        }
-        try:
-            sent = send_email(data)
-        except Exception:
-            sent = False
-            st.error(f"Something went wrong sending your request. Please call {BUSINESS['phone']}.")
-        else:
-            st.success("Thanks! We got your request and will be in touch within 1 business day.")
-            if not sent:
-                st.caption("⚠️ Dev note: email secrets not configured — request was not delivered.")
+    contact_pref = st.radio("Best way to reach you", ["Phone", "Text", "Email"],
