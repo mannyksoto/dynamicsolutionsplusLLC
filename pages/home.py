@@ -18,11 +18,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-c1, c2 = st.columns([1, 1])
-with c1:
-    st.page_link("pages/contact.py", label="Get a Free Estimate", icon="📞")
-with c2:
-    st.page_link("pages/services.py", label="See Our Services", icon="💧")
+st.page_link("pages/contact.py", label="Get a Free Estimate", icon="📞")
 
 st.subheader("What we do")
 per_row = 4 if len(SERVICES) <= 4 else 3
