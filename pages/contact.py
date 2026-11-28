@@ -26,8 +26,13 @@ def send_email(data: dict) -> bool:
     msg["To"] = cfg["recipient"]
     msg["Reply-To"] = data["email"]
     msg.set_content("\n".join(f"{k.title()}: {v}" for k, v in data.items()))
-    with smtplib.SMTP(cfg["smtp_server"], int(cfg.get("smtp_port", 587))) as s:
-        s.starttls()
+    port = int(cfg.get("smtp_port", 465))
+    if port == 465:
+        server = smtplib.SMTP_SSL(cfg["smtp_server"], port, timeout=20)
+    else:
+        server = smtplib.SMTP(cfg["smtp_server"], port, timeout=20)
+        server.starttls()
+    with server as s:
         s.login(cfg["sender"], cfg["password"])
         s.send_message(msg)
     return True
