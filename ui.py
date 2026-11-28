@@ -89,6 +89,15 @@ CSS = """
   word-break: keep-all; overflow-wrap: normal; hyphens: none;
 }
 .card li::marker {color: #FEBE01; font-size: 1.2em;}
+/* clickable cards on the Home page */
+.card-link, .card-link:hover {text-decoration: none !important; color: inherit !important; display: block; height: 100%;}
+.card-link .card {display: flex; flex-direction: column; min-height: 100%;}
+.card-link .card p {color: #1d2b22;}
+.card .more {margin-top: auto; padding-top: .6rem; font-weight: 600; color: #2e7d4f;}
+.card-link:hover .more {color: #3d1a5c;}
+/* Home page cards: one grid, equal heights, wraps on smaller screens */
+.card-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem;}
+.card-grid .card-link .card {height: 100%;}
 
 /* clickable cards on the Home page */
 .card-link, .card-link:hover {text-decoration: none !important; color: inherit !important; display: block; height: 100%;}
