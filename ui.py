@@ -10,6 +10,17 @@ CSS = """
 #MainMenu, footer, [data-testid="stToolbarActions"], [data-testid="stMainMenu"], [data-testid="stAppDeployButton"] {display: none !important;}
 .block-container {padding-top: 2rem; max-width: 1300px;}
 
+/* phone: label the collapsed menu button so visitors know to tap it */
+[data-testid="stExpandSidebarButton"] {
+  display: inline-flex !important; align-items: center; gap: .35rem;
+  width: auto !important; padding: .35rem .8rem !important;
+  border: 1.5px solid #2e7d4f !important; border-radius: 999px !important;
+  background: #f1f7f3 !important; color: #1f4d2b !important;
+}
+[data-testid="stExpandSidebarButton"]::after {
+  content: "Menu"; font-weight: 600; font-size: .95rem;
+}
+
 .hero {
   background: linear-gradient(135deg, #1f4d2b 0%, #2e7d4f 30%, #3d1a5c 100%);
   color: #fff; border-radius: 16px; padding: 1.75rem; margin-bottom: 2rem;
