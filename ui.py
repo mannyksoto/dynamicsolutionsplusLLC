@@ -43,6 +43,13 @@ CSS = """
 }
 .hero .btn-primary {background: #FEBE01; color: #111 !important;}
 .hero .btn-primary:hover {background: #ffd23f;}
+.hero .btn-fb {
+  background: #fff; color: #1877F2 !important;
+  display: inline-flex; align-items: center; gap: .5rem;
+}
+.hero .btn-fb:hover {background: #eef3fe;}
+.hero .fb-row {margin-top: .8rem;}
+
 .hero .badge {
   border: 1.5px solid rgba(255,255,255,.6); color: #fff;
   background: rgba(255,255,255,.08);
